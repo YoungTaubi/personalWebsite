@@ -1,23 +1,23 @@
-import logo from './logo.svg';
+import { Route, Routes } from 'react-router-dom'
 import './App.css';
+import DeskTopNavbar from './components/DeskTopNavbar';
+import './components/DeskTopNavbar.css';
+import './components/Projects.css';
+import Projects from './components/Projects';
+import AboutMe from './components/AboutMe';
+import GetInTouch from './components/GetInTouch';
+import ProjectPage from './components/ProjectPage';
 
 function App() {
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
+    <div className="App-header">
+      <DeskTopNavbar />
+      <Routes>
+        <Route path='/projects' element={<Projects />} />
+        <Route path='/projects/:id' element={<ProjectPage />} />
+        <Route path='/about-me' element={<AboutMe />} />
+        <Route path='/get-in-touch' element={<GetInTouch />} />
+      </Routes>
     </div>
   );
 }
