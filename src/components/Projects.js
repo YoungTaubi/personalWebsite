@@ -68,7 +68,8 @@ export default function Projects() {
                         >
                             <button
                                 onClick={() => setProgrammingState(!programmingState)}
-                                style={{ backgroundColor: programmingState && 'black', color: programmingState && 'white' }}>
+                                className={programmingState ? 'button buttonClicked' : 'button'}
+                                >
                                 Programming</button>
                         </motion.div>
                         <motion.div
@@ -78,7 +79,8 @@ export default function Projects() {
                         >
                             <button
                                 onClick={() => setIndustrialDesignState(!industrialDesignState)}
-                                style={{ backgroundColor: industrialDesignState && 'black', color: industrialDesignState && 'white' }}>
+                                className={industrialDesignState ? 'button buttonClicked' : 'button'}
+                                >
                                 Industrial Design</button>
                         </motion.div>
                         <motion.div
@@ -88,7 +90,8 @@ export default function Projects() {
                         >
                             <button
                                 onClick={() => setPersonalProjectState(!personalProjectState)}
-                                style={{ backgroundColor: personalProjectState && 'black', color: personalProjectState && 'white' }}>
+                                className={personalProjectState ? 'button buttonClicked' : 'button'}
+                                >
                                 Personal Project</button>
                         </motion.div>
 
