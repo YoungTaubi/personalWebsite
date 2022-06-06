@@ -10,7 +10,7 @@ export default function ProjectTile({ projectTitle, projectType, setTileFullWidt
     }
    
     return (
-        <div className="projectTile" style={{ width: setTileFullWidth && '92VW', backgroundImage: `url(${imageURL})` }} onMouseEnter={handleMouseHover} onMouseLeave={handleMouseHover}>
+        <div className="projectTile" style={{ width: setTileFullWidth && '92vw', backgroundImage: `url(${imageURL})` }} onMouseEnter={handleMouseHover} onMouseLeave={handleMouseHover}>
             {
                 mouseHover &&
                 <>

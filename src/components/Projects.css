@@ -9,14 +9,18 @@
 }
 
 .projectTileContainer {
-  width: 100vw;
+  margin: 0;
+  padding: 0;
+  max-width: 100%;
+  width: 100%;
   min-height: 100vh;
   padding-top: 200px;
-  padding-left: 80px;
-  padding-right: 80px;
+  /* padding-left: 50px; */
+  /* padding-right: 50px; */
   display: flex;
   justify-content: center;
   flex-wrap: wrap;
+  box-sizing: border-box;
 }
 
 .darkOverlay {
