@@ -21,6 +21,7 @@
   justify-content: center;
   flex-wrap: wrap;
   box-sizing: border-box;
+  /* border: solid red 2px; */
 }
 
 .darkOverlay {

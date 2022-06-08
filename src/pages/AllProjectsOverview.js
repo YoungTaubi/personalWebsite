@@ -1,13 +1,13 @@
 import { useState } from 'react'
 import { Link } from 'react-router-dom'
 import { motion } from "framer-motion"
-import ProjectTile from './ProjectTile'
+import ProjectTile from '../components/ProjectTile'
 // import projectInfoData from '../projectInfo'
 import projectInfoData from "../projectInfo"
 
 // open ToDo: Only animate project tiles which are visible
 
-export default function Projects() {
+export default function AllProjectsOverview() {
 
     const [projectData, setProjectData] = useState(projectInfoData.projects)
     const [filterWindow, setFilterWindow] = useState(false)
