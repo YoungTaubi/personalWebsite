@@ -1,6 +1,6 @@
 import TryMobileApp from "../components/TryMobileApp"
 import HeaderImage from "../components/HeaderImage"
-import ImageCarousel from "../components/ImageCarousel"
+import ImagePlusTextCarousel from "../components/ImagePlusTextCarousel.tsx"
 
 
 export default function ProjectPage({ currentProject }) {
@@ -10,12 +10,17 @@ export default function ProjectPage({ currentProject }) {
             <div className="projectPageContainer">
                 <HeaderImage
                     introImageURL={currentProject.introImageURL} />
-                <h2>Project Page</h2>
-                <h2>{currentProject.title}</h2>
+                <div className="descriptionContainer">
+                    <h2 className="gradient">{currentProject.title}</h2>
+                    <p style={{ fontSize: '16pt' }}>Splitify is a vacation split app designed to help keep track of finances.<br />
+                        It´s using React, Framer Motion, Socket.io, Express.js, and MongoDB.
+                    </p>
+                </div>
                 <div>
                     <div className="imageCarouselContainer">
-                        <ImageCarousel
+                        <ImagePlusTextCarousel
                             carouselImages={currentProject.carouselImages}
+                            height={700}
                         />
                     </div>
                 </div>

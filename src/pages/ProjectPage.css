@@ -9,20 +9,30 @@
   align-items: center;
 }
 
-.backgroundImageContainer {
+.headerImageContainer {
   padding: 0;
   margin: 0;
   min-width: 100vw;
   min-height: 800px;
   background-size: cover;
   background-position: center;
-  border: solid red 2px;
+  /* border: solid red 2px; */
   box-sizing: border-box;
+}
+
+.descriptionContainer {
+  padding: 0;
+  margin: 50px 0 150px;
+  width: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
 }
 
 .tryItYourSelfContainer {
   padding: 0;
-  margin: 0;
+  margin: 150px 0;
   min-height: fit-content;
   min-width: 100%;
   display: flex;
@@ -79,12 +89,10 @@
   /* border-radius: 31px; */
 }
 
-.imageCarouselContainer {
-  width: 40vw;
-  height: 100vh;
-  position: relative;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  /* overflow: hidden; */
+.gradient {
+  background: linear-gradient(45deg, rgba(255, 183, 0, 1) 0%, rgba(255, 0, 174, 1) 100%);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  line-height:150%;
 }
+

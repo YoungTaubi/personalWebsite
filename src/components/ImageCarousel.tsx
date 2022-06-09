@@ -3,12 +3,10 @@ import { motion, AnimatePresence } from "framer-motion"
 import { wrap } from "popmotion";
 import './ImageCarousel.css'
 
-const number = 1
-
 const variants = {
     enter: (direction: number) => {
         return {
-            x: direction > 0 ? 1000 : -1000,
+            x: direction > 0 ? 300 : -300,
             opacity: 0
         };
     },
@@ -20,7 +18,7 @@ const variants = {
     exit: (direction: number) => {
         return {
             zIndex: 0,
-            x: direction < 0 ? 1000 : -1000,
+            x: direction < 0 ? 300 : -300,
             opacity: 0
         };
     }
@@ -47,7 +45,7 @@ export default function ImageCarousel({ width, height, carouselImages }) {
                 <motion.img
                     style={{width: width}}
                     key={page}
-                    src={carouselImages[imageIndex]}
+                    src={carouselImages[imageIndex].url}
                     custom={direction}
                     variants={variants}
                     initial="enter"
