@@ -1,8 +1,9 @@
 .next,
 .prev {
-  top: calc(50% - 20px);
-  position: absolute;
+  /* top: calc(50% - 20px); */
+  /* position: absolute; */
   /* background: white; */
+  margin: 15px;
   border-radius: 30px;
   width: 40px;
   height: 40px;
@@ -60,7 +61,7 @@ img {
 .imageContainer {
     padding: 0;
     margin: 0;
-    width: 35%;
+    width: 30%;
     height: 700px;
     display: flex;
     justify-content: center;
@@ -71,7 +72,7 @@ img {
 .textContainer {
     padding: 0;
     margin: 0;
-    width: 35%;
+    width: 30%;
     height: 700px;
     display: flex;
     justify-content: center;

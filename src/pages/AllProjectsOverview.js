@@ -2,10 +2,7 @@ import { useState } from 'react'
 import { Link } from 'react-router-dom'
 import { motion } from "framer-motion"
 import ProjectTile from '../components/ProjectTile'
-// import projectInfoData from '../projectInfo'
 import projectInfoData from "../projectInfo"
-
-// open ToDo: Only animate project tiles which are visible
 
 export default function AllProjectsOverview() {
 
@@ -69,7 +66,7 @@ export default function AllProjectsOverview() {
                             <button
                                 onClick={() => setProgrammingState(!programmingState)}
                                 className={programmingState ? 'button buttonClicked' : 'button'}
-                                >
+                            >
                                 Programming</button>
                         </motion.div>
                         <motion.div
@@ -80,7 +77,7 @@ export default function AllProjectsOverview() {
                             <button
                                 onClick={() => setIndustrialDesignState(!industrialDesignState)}
                                 className={industrialDesignState ? 'button buttonClicked' : 'button'}
-                                >
+                            >
                                 Industrial Design</button>
                         </motion.div>
                         <motion.div
@@ -91,7 +88,7 @@ export default function AllProjectsOverview() {
                             <button
                                 onClick={() => setPersonalProjectState(!personalProjectState)}
                                 className={personalProjectState ? 'button buttonClicked' : 'button'}
-                                >
+                            >
                                 Personal Project</button>
                         </motion.div>
 
@@ -101,26 +98,26 @@ export default function AllProjectsOverview() {
             </div>
             <div className='projectTileContainer'>
                 {filteredProjectData.map((project, index) => (
-
                     <motion.div
                         initial={{ x: -100, opacity: 0 }}
-                        animate={{ x: 0, opacity: 1 }}
-                        transition={{ type: "spring", stiffness: 100, delay: 0.3 * index, }}
+                        whileInView={{ x: 0, opacity: 1 }}
+                        viewport={{ once: true }}
+                        transition={{ type: "spring", stiffness: 100, delay: 0.15 * index, }}
                         key={project.title}
                     >
-                    <Link to={`/projects/${project.id}`}>
-                        <ProjectTile
-                            projectTitle={project.title}
-                            projectType={project.type}
-                            imageURL={project.introImageURL}
-                            index={index}
-                            setTileFullWidth={handleLastProjectTile(index)}
-                        />
-                    </Link>
+                        <Link to={`/projects/${project.id}`}>
+                            <ProjectTile
+                                projectTitle={project.title}
+                                projectType={project.type}
+                                imageURL={project.introImageURL}
+                                index={index}
+                                setTileFullWidth={handleLastProjectTile(index)}
+                            />
+                        </Link>
                     </motion.div>
-
                 ))}
-            </div>
+                <div style={{minHeight: '100px', width: '100vw'}}></div>
+            </div>           
         </>
     )
 }

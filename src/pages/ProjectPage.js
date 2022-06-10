@@ -2,7 +2,7 @@ import { useParams } from 'react-router-dom';
 import { useState, useEffect } from "react"
 import SplitifyProjectPage from './SplitifyProjectPage';
 import projectData from "../projectInfo"
-import AboutMe from './AboutMe'; // Just as placeholder
+import AboutMe from './AboutMe.js'; // Just as placeholder
 import './ProjectPage.css'
 
 export default function ProductPage() {

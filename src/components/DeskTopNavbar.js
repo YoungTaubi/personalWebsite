@@ -1,9 +1,9 @@
-import { Link, NavLink, useLocation } from 'react-router-dom'
+import { Link, useLocation } from 'react-router-dom'
 import React, { useState, useEffect } from 'react'
 
 export default function DeskTopNavbar() {
 
-    const {pathname, key} = useLocation()
+    const { pathname, key } = useLocation()
 
     const pathObj = {
         '/projects': false,
@@ -13,10 +13,6 @@ export default function DeskTopNavbar() {
 
     const [navBarBkVisible, setNavBarBkVisible] = useState(false)
     const [currentPath, setCurrentPath] = useState(pathObj)
-    
-    console.log(currentPath);
-
-    console.log(useLocation());
 
     const showNavbarBk = () => {
         if (window.scrollY > 60) {
@@ -30,15 +26,23 @@ export default function DeskTopNavbar() {
 
     useEffect(() => {
         for (let path in pathObj) {
-            console.log(path, pathname);
-            if (path === pathname) {
-                console.log('match', path);
-                pathObj[path] = true 
-            } else {
-                pathObj[path] = false
+            for (let i = 0; i < pathname.length; i++) {
+                if (pathname[i] === '/' && pathname[i + 1] === '0') {
+                    if (path === pathname.slice(0, pathname.length - 4)) {
+                        pathObj[path] = true
+                    } else {
+                        pathObj[path] = false
+                    }
+                    return
+                } else {
+                    if (path === pathname) {
+                        pathObj[path] = true
+                    } else {
+                        pathObj[path] = false
+                    }
+                }
             }
         }
-        console.log('pathObj', pathObj);
         setCurrentPath(pathObj)
     }, [key])
 
@@ -46,11 +50,11 @@ export default function DeskTopNavbar() {
     return (
         <>
             <nav className={navBarBkVisible ? "navbar active" : "navbar"}>
-                <h3 className="darley">Jonas Darley</h3>
+                <Link to='/'><h3 className="darley">Jonas Darley</h3></Link>
                 <ul className="links">
-                    <Link to='/projects'><li className={currentPath['/projects'] ? 'underline-hover-effect activeLink' : 'underline-hover-effect'}>Projects</li></Link>
-                    <Link to='/about-me'><li className={currentPath['/about-me'] ? 'underline-hover-effect activeLink' : 'underline-hover-effect'}>About me</li></Link>
-                    <Link to='/get-in-touch'><li className={currentPath['/get-in-touch'] ? 'underline-hover-effect activeLink' : 'underline-hover-effect'}>Get in touch</li></Link>
+                    <Link to='/projects'><li className={currentPath['/projects'] ? 'underline-hover-effect gradient' : 'underline-hover-effect'}>Projects</li></Link>
+                    <Link to='/about-me'><li className={currentPath['/about-me'] ? 'underline-hover-effect gradient' : 'underline-hover-effect'}>About me</li></Link>
+                    <Link to='/get-in-touch'><li className={currentPath['/get-in-touch'] ? 'underline-hover-effect gradient' : 'underline-hover-effect'}>Get in touch</li></Link>
                 </ul>
             </nav>
         </>

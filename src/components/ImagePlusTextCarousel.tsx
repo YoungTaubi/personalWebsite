@@ -92,6 +92,7 @@ export default function ImageCarousel({ width, height, carouselImages }) {
         <>
             {carouselImages &&
                 <div className="imageAndTextContainer">
+                    <IoIosArrowForward className="prev" onClick={() => paginate(-1)} />
                     <div className="textContainer">
                         <AnimatePresence initial={false}>
                             <TextComponent key={textIndex + 'Text'} />
@@ -127,10 +128,8 @@ export default function ImageCarousel({ width, height, carouselImages }) {
                         </AnimatePresence>
                     </div>
                     <IoIosArrowForward className="next" onClick={() => paginate(1)} />
-                    <IoIosArrowForward className="prev" onClick={() => paginate(-1)} />
                 </div>
             }
-
         </>
     )
 }

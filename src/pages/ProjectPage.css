@@ -38,7 +38,7 @@
   display: flex;
   justify-content: center;
   align-items: center;
-  border: solid blue 2px;
+  /* border: solid blue 2px; */
   flex-wrap: wrap;
 }
 
@@ -52,7 +52,7 @@
 .tryMobileAppContainer {
   min-width: fit-content;
   min-height: fit-content;
-  border: solid green 2px;
+  /* border: solid green 2px; */
   display: flex;
   justify-content: center;
   align-items: center;
@@ -89,10 +89,5 @@
   /* border-radius: 31px; */
 }
 
-.gradient {
-  background: linear-gradient(45deg, rgba(255, 183, 0, 1) 0%, rgba(255, 0, 174, 1) 100%);
-  -webkit-background-clip: text;
-  -webkit-text-fill-color: transparent;
-  line-height:150%;
-}
+
 

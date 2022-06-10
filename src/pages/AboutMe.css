@@ -1,0 +1,49 @@
+.aboutMeContainer {
+  padding: 0;
+  margin: 0;
+  width: 100vw;
+  min-height: 100vh;
+  /* position: relative; */
+  border: solid orange 2px;
+  box-sizing: border-box;
+}
+
+canvas {
+  padding: 0;
+  margin: 0;
+  top: 0;
+  width: 100vw;
+  height: 100vh;
+  position: fixed;
+  box-sizing: border-box;
+  border: solid red 2px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  z-index: -1;
+}
+
+.aboutMetextContainer {
+  padding: 0;
+  margin: 0;
+  top: 0;
+  min-width: 100vw;
+  min-height: 100%;
+  position: absolute;
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start;
+  align-items: center;
+  border: solid blue 2px;
+  box-sizing: border-box;
+  z-index: 1;
+}
+
+.textBlockContainer {
+  width: 60vw;
+  min-height: fit-content;
+  margin: 200px;
+  padding: 0;
+  border: solid green 2px;
+  box-sizing: border-box;
+}
