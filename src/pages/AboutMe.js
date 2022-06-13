@@ -1,44 +1,88 @@
 import { Canvas, useFrame } from '@react-three/fiber'
-import { ScrollControls, useScroll, PerspectiveCamera, OrbitControls } from '@react-three/drei'
+import { ScrollControls, useScroll, PerspectiveCamera, OrbitControls, Box, ambientLight } from '@react-three/drei'
 import React, { useRef, useState } from 'react'
-import { Mesh, Camera } from 'three'
+import { Mesh } from 'three'
 import * as THREE from 'three'
+import Grid from '../components/3D/Grid'
+import Portrait from '../components/3D/Portrait'
+
 
 export default function AboutMe() {
 
-    function Box() {
+    // function Box() {
+    //     const boxRef = useRef()
+
+    //     useFrame(() => {
+    //         boxRef.current.rotation.x += 0.05
+    //         boxRef.current.rotation.y += 0.02
+    //     })
+
+    //     return (
+    //         <mesh position={[-5, 0, 0]} ref={boxRef}>
+    //             
+    //                 <boxGeometry args={[2, 2, 2]} />
+    //                 <meshNormalMaterial />
+    //             
+    //         </mesh>
+    //     )
+    // }
+
+    function Cube() {
         const boxRef = useRef()
 
+
+
         useFrame(() => {
-            boxRef.current.rotation.x += 0.05
-            boxRef.current.rotation.y += 0.02
+            //  boxRef.current.rotation.x += 0.05
+            if (true) {
+                boxRef.current.position.y -= 0.02
+                boxRef.current.rotation.y -= 0.02
+            }
+
+            //  boxRef.current.rotation.x += 0.05
         })
 
-        return (
-            <mesh position={[-5, 0, 0]} ref={boxRef}>
-                <boxGeometry args={[2, 2, 2]} />
-                <meshNormalMaterial />
-            </mesh>
-        )
 
+        return (
+            <group position={[-5, 0, 10]} rotation={[0.5, 0, 0]}>
+                {/* <Grid size={20} /> */}
+                {/* <Box position={[0, 0, 0]}>
+                    <meshNormalMaterial />
+                </Box> */}
+                <Box position={[0, 10, 0]} ref={boxRef}>
+                    <meshNormalMaterial />
+                </Box>
+            </group>
+        )
     }
 
 
+
+
+
     function MoveCamera() {
-
-
 
         const cameraRef = useRef()
 
         let cameraX = window.scrollY / 10
         let cameraZ = window.scrollY / 10
 
+
+
         useFrame(() => {
             console.log(cameraRef);
-            cameraRef.current.position.x = window.scrollY / 10
-            cameraRef.current.position.y = window.scrollY / 3
-            cameraRef.current.position.z = window.scrollY / 5
-            cameraRef.current.rotation.z = window.scrollY / 100
+            cameraRef.current.position.x = 0
+            cameraRef.current.position.y = 0
+            cameraRef.current.position.z = 10
+            cameraRef.current.rotation.x = 0.5
+
+            // cameraRef.current.lookAt(0,0,0)
+            // cameraRef.current.rotation.y = window.scrollY / 1000
+
+            // cameraRef.current.position.x = window.scrollY / 10
+            // cameraRef.current.position.y = window.scrollY / 3
+            // cameraRef.current.position.z = window.scrollY / 5
+            // cameraRef.current.rotation.z = window.scrollY / 100
         })
 
         // console.log(window.scrollY / 10);
@@ -80,12 +124,16 @@ export default function AboutMe() {
                 </div>
 
                 <Canvas>
-                    <MoveCamera />
+                    <OrbitControls />
+                    <Portrait />
+                    {/* <MoveCamera /> */}
+                    {/* <Grid size={20} /> */}
+
                     {/* <PerspectiveCamera makeDefault
                         position={[0, 10, 10]}
                     />  */}
-                    <OrbitControls />
-                    <Box />
+
+                    <Cube />
                     <mesh position={[0, 0, 0]}>
                         <sphereGeometry
                             args={[2, 62, 32]}

@@ -20,29 +20,29 @@ canvas {
   display: flex;
   justify-content: center;
   align-items: center;
-  z-index: -1;
+  z-index: 0;
 }
 
 .aboutMetextContainer {
   padding: 0;
   margin: 0;
   top: 0;
-  min-width: 100vw;
+  min-width: 50vw;
   min-height: 100%;
   position: absolute;
   display: flex;
   flex-direction: column;
   justify-content: flex-start;
-  align-items: center;
+  align-items: flex-start;
   border: solid blue 2px;
   box-sizing: border-box;
   z-index: 1;
 }
 
 .textBlockContainer {
-  width: 60vw;
+  width: 50vw;
   min-height: fit-content;
-  margin: 200px;
+  margin: 200px 0;
   padding: 0;
   border: solid green 2px;
   box-sizing: border-box;
