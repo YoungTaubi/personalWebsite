@@ -7,13 +7,12 @@ import { useGLTF } from '@react-three/drei'
 
 export default function Model({ ...props }) {
   const group = useRef()
-  const { nodes, materials } = useGLTF('/Iron-Hack-Batch.glb')
+  const { nodes, materials } = useGLTF('/test.glb')
   return (
-    <group ref={group} {...props} dispose={null}>
+    <group ref={group} {...props} >
       <mesh geometry={nodes.Cube.geometry} material={materials.Material} />
-      <mesh geometry={nodes['20220428_Iron_Crypto_Logo'].geometry} material={materials['Default OBJ']} rotation={[Math.PI / 2, 0, 0]} />
     </group>
   )
 }
 
-useGLTF.preload('/Iron-Hack-Batch.glb')
+useGLTF.preload('/test.glb')

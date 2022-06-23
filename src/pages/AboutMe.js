@@ -1,15 +1,26 @@
 import { Canvas, useFrame } from '@react-three/fiber'
 import { ScrollControls, useScroll, PerspectiveCamera, OrbitControls, Box, ambientLight } from '@react-three/drei'
-import React, { useRef, useState } from 'react'
+import React, { useEffect, useRef, useState } from 'react'
 import { Mesh } from 'three'
 import * as THREE from 'three'
 import Grid from '../components/3D/Grid'
 import Portrait from '../components/3D/Portrait'
 import IndustrialDesignCollection from '../components/3D/IndustrialDesinCollection'
-import IronHackBatch from '../../src/3D-data/Iron-Hack-Batch'
+import Iron_Hack_Batch from '../3D-data/Iron_Hack_Batch_Test'
+import Test from '../3D-data/Test'
+import { ClampToEdgeWrapping } from 'three'
 
 
 export default function AboutMe() {
+
+    const aboutMeRef = useRef()
+    const workExperience = useRef()
+
+    const [windowYPos, setWindowYPos] = useState(0)
+    const [workExperienceYPos, setWorkExperienceYPos] = useState(0)
+
+    // console.log('about Me', aboutMeRef.current?.offsetTop)
+    // console.log('work exp', workExperience.current?.offsetTop)
 
     // function Box() {
     //     const boxRef = useRef()
@@ -35,6 +46,7 @@ export default function AboutMe() {
 
 
         useFrame(() => {
+            ;
             //  boxRef.current.rotation.x += 0.05
             if (true) {
                 boxRef.current.position.y -= 0.02
@@ -73,19 +85,21 @@ export default function AboutMe() {
 
 
         useFrame(() => {
+            setWindowYPos(window.scrollY)
+            console.log(windowYPos);
             cameraRef.current.position.x = 0
             cameraRef.current.position.y = 0
             cameraRef.current.position.z = 15
             cameraRef.current.rotation.x = 0
-            cameraRef.current.lookAt(cameralookAtX,cameralookAtY,cameralookAtZ)
+            cameraRef.current.lookAt(cameralookAtX, cameralookAtY, cameralookAtZ)
 
             cameraRef.current.position.y = - window.scrollY / 50
-            
-            
-            
+
+
+
         })
 
-        // console.log(window.scrollY / 10);
+        // console.log(window.scrollY);
 
 
 
@@ -103,17 +117,24 @@ export default function AboutMe() {
 
     // window.addEventListener('scroll', MoveCamera)
 
+useEffect(() => {
+    setWorkExperienceYPos(workExperience.current?.offsetTop)
+}, [windowYPos])
+
 
 
     return (
         <>
-            <div className='aboutMeContainer'>
+            <div className='aboutMeContainer' onScroll={() => {
+                setWindowYPos(window.scrollY)
+            }
+            }>
                 <div className='aboutMetextContainer'>
-                    <div className='textBlockContainer'>
+                    <div className='textBlockContainer' ref={aboutMeRef}>
                         <h3 style={{ color: 'black' }}>About Me</h3>
                         <p>Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua. At vero eos et accusam et justo duo dolores et ea rebum. Stet clita kasd gubergren, no sea takimata sanctus est Lorem ipsum dolor sit amet. Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua. At vero eos et accusam et justo duo dolores et ea rebum. Stet clita kasd gubergren, no sea takimata sanctus est Lorem ipsum dolor sit amet.</p>
                     </div>
-                    <div className='textBlockContainer'>
+                    <div className='textBlockContainer' ref={workExperience}>
                         <h3 style={{ color: 'black' }}>Work experience</h3>
                         <p>Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua. At vero eos et accusam et justo duo dolores et ea rebum. Stet clita kasd gubergren, no sea takimata sanctus est Lorem ipsum dolor sit amet. Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua. At vero eos et accusam et justo duo dolores et ea rebum. Stet clita kasd gubergren, no sea takimata sanctus est Lorem ipsum dolor sit amet.</p>
                     </div>
@@ -126,13 +147,17 @@ export default function AboutMe() {
                 <Canvas>
                     <MoveCamera />
                     <OrbitControls />
-                    <Portrait 
+                    <Portrait
                         posX={-3}
                         posY={5}
                         posZ={0}
                     />
                     <IndustrialDesignCollection />
-                    {/* <IronHackBatch /> */}
+                    {/* <Test /> */}
+                    {/* {windowYPos > workExperience.current?.offsetTop && */}
+                        <Iron_Hack_Batch workExperienceYPos={workExperienceYPos} />
+                    {/* } */}
+
                     {/* <MoveCamera /> */}
                     {/* <Grid size={20} /> */}
 
