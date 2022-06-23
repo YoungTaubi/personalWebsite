@@ -21,7 +21,7 @@ export default function Model({ workExperienceYPos }) {
   // console.log(batchRef);
 
   let velocity = 0
-  let accelleration = 0.01
+  let accelleration = 0.1
   // let speed = 0;
   let travel = 0
 
@@ -45,53 +45,55 @@ export default function Model({ workExperienceYPos }) {
   //   }
   // }
 
-  const move = (direction2, maxSpeed) => {
-    const interval = setInterval(accellerate(direction2), 1000);
-    console.log('01', direction2);
-    function accellerate(direction2) {
-      if (direction2 === 'forward') {
-        console.log('forward');
-        // setSpeed(prevSpeed => prevSpeed + accelleration)
-        // if (speed < maxSpeed) {
-        velocity += accelleration
-        setSpeed(prevSpeed => prevSpeed + velocity)
-        // }
-        // speed += velocity;
-        // else {
-        //   setSpeed(maxSpeed)
-        //   //  speed = maxSpeed
-        // }
-      }
-      if (direction2 === 'backward') {
-        console.log('internal', direction2);
-        // if (speed > -maxSpeed) {
-        velocity += accelleration
-        setSpeed(prevSpeed => prevSpeed - velocity)
-        // }
-        // speed += velocity;
-        // else {
-        //   setSpeed(-maxSpeed)
-        //  speed = maxSpeed
-        // }
-        // setSpeed(prevSpeed => prevSpeed - accelleration)
-        // velocity += accelleration
-        // speed -= velocity;
-        // if (speed < -maxSpeed) {
-        //   speed = -maxSpeed
-        // }
-        // travel += speed
-      } else if (direction === 'brake') {
-        velocity += accelleration
-        speed -= velocity;
-        if (speed < 0) {
-          // speed = 0
-          velocity = 0
-          travel = 0
-          clearInterval(interval)
+  const move = (direction, maxSpeed) => {
+    const interval = setInterval(accellerate(direction), 1000);
+    function accellerate(direction) {
+      if (direction === 'forward') {
+        if (speed > -maxSpeed) {
+          velocity += accelleration
+          setSpeed(prevSpeed => prevSpeed - velocity)
+        } else {
+          setSpeed(-maxSpeed)
         }
       }
+      if (direction === 'backward') {
+        if (speed < maxSpeed) {
+          velocity += accelleration
+          setSpeed(prevSpeed => prevSpeed + velocity)
+        } else {
+          setSpeed(maxSpeed)
+        }
+      }
+      if (direction === 'brake') {
+        if (speed > 0) {
+          console.log('test1')
+          velocity += accelleration
+          setSpeed(prevSpeed => prevSpeed - velocity)
+          if (speed < 0) {
+            console.log('test2');
+            clearInterval(interval)
+            velocity = 0
+            setSpeed(0)
+          }
+        }
+        if (speed <= 0) {
+          console.log('test0')
+          velocity += accelleration
+          setSpeed(prevSpeed => prevSpeed + velocity)
+          // if (speed === 0) {
+          //   console.log('test schluss +++++++++++++++');
+          //   velocity = 0
+          //   setSpeed(0)
+          //   console.log('test schluss +++++++++++++++');
+          //   clearInterval(interval)
+          //   return
+          // }
+        }
+      }
+
     }
   }
+
 
   // const accellerate = () => {
   //   const accellerationInterval = setInterval(accellerate, 5);
@@ -110,10 +112,10 @@ export default function Model({ workExperienceYPos }) {
     const test = direction
     move(test, 3)
     if (batchRef.current.position.x < -10) {
-      setDiection('backward')
+      setDiection('brake')
       // setDiection('backward')
     }
-    if (batchRef.current.position.x > 10) {
+    if (batchRef.current.position.x > 20) {
       setDiection('forward')
     }
     console.log(batchRef.current.position.x.toFixed(1), speed.toFixed(1), direction);
@@ -142,7 +144,7 @@ export default function Model({ workExperienceYPos }) {
 
   return (
 
-    <group ref={group} dispose={null} scale={0.05} rotation={[-0.5, -0.5, -0.2]} position={[0, 0, 0]}>
+    <group ref={group} dispose={null} scale={0.05} rotation={[-0.5, -0.5, -0.2]} position={[-10, 0, 0]}>
       {/* <mesh geometry={nodes.Cube.geometry} material={materials.Material} /> */}
       <mesh geometry={nodes['20220428_Iron_Crypto_Logo'].geometry} material={normalMaterial} rotation={[Math.PI / 2, 0, 0]} ref={batchRef} />
     </group>
