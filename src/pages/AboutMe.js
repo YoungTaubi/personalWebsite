@@ -85,7 +85,7 @@ export default function AboutMe() {
 
 
         useFrame(() => {
-            setWindowYPos(window.scrollY)
+            setWindowYPos(window.scrollY / 50)
             console.log(windowYPos);
             cameraRef.current.position.x = 0
             cameraRef.current.position.y = 0
